@@ -56,6 +56,7 @@ HTTPのPOST通信によりJSON形式にてデジタル入力データを送信�
     デモ運用のAmazon AWS EC2サーバーやローカルサーバーアドレスを記述します。  
     サーバー上では[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/tree/master/demo_web_app)の動作が必要です。 
     EC2サーバーの場合起動のたびにアドレスが変更されるため、記述を確認してくださいです。  
+    デモ運用AWSサーバーのURLについては「[計測・制御製品サポートセンター](http://www.ratocsystems.com/mail/index.html)」へ問い合わせ願います。
 
 1. **RPi-GP10の初期設定 init_GP10()**  
     GPIOとI2Cの初期設定を行います。  

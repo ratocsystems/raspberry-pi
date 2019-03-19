@@ -1,6 +1,8 @@
 # クラウドデモWEBアプリ用Pythonプログラム
 
-[クラウドWEBアプリ](https://github.com/ratocsystems/raspberry-pi/tree/master/demo_web_app)が動作するサーバーへ、取得したデータをPOSTするRaspberry Pi用のPythonプログラムです。  
+[クラウドWEBアプリ](https://github.com/ratocsystems/raspberry-pi/tree/master/demo_web_app)が動作するサーバーへ、
+取得したデータをPOSTするRaspberry Pi用のPythonプログラムです。  
+EC2サーバー起動のたびにアドレスが変更されるため、デモ運用AWSサーバーのURLについては「[計測・制御製品サポートセンター](http://www.ratocsystems.com/mail/index.html)」へ問い合わせ願います。
 
 ## 対象製品
 

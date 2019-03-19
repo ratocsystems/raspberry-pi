@@ -5,7 +5,6 @@ Raspberry Piは'Raspberry Pi3 ModelB'、OSは'Raspbian Stretch with desktop(NOOB
 プログラムファイルは`GP40_demo.py`です。  
 
 [クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/tree/master/demo_web_app)が動作するサーバーへRPi-GP40から取得したデータをPOSTします。  
-
   
 ***
 ## 準備
@@ -57,6 +56,7 @@ HTTPのPOST通信によりJSON形式にてアナログ入力データを送信�
     デモ運用のAmazon AWS EC2サーバーやローカルサーバーアドレスを記述します。  
     サーバー上では[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/tree/master/demo_web_app)の動作が必要です。 
     EC2サーバーの場合起動のたびにアドレスが変更されるため、記述を確認してくださいです。  
+    デモ運用AWSサーバーのURLについては「[計測・制御製品サポートセンター](http://www.ratocsystems.com/mail/index.html)」へ問い合わせ願います。
 
 1. **RPi-GP40の初期設定 init_GP40()**  
     GPIOの初期設定を行います。  
