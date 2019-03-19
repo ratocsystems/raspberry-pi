@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Distance:
+  = @survey.distance
+%p
+  %b Machine:
+  = @survey.machine
+%p
+  %b Date:
+  = @survey.date
+
+= link_to 'Edit', edit_survey_path(@survey)
+\|
+= link_to 'Back', surveys_path

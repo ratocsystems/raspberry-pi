@@ -1,0 +1,25 @@
+= form_for @slope do |f|
+  - if @slope.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@slope.errors.count, "error")} prohibited this slope from being saved:"
+      %ul
+        - @slope.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :x
+    = f.number_field :x
+  .field
+    = f.label :y
+    = f.number_field :y
+  .field
+    = f.label :z
+    = f.number_field :z
+  .field
+    = f.label :machine
+    = f.text_field :machine
+  .field
+    = f.label :date
+    = f.datetime_select :date
+  .actions
+    = f.submit 'Save'

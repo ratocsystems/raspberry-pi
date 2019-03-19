@@ -1,0 +1,19 @@
+= form_for @gp40 do |f|
+  - if @gp40.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@gp40.errors.count, "error")} prohibited this gp40 from being saved:"
+      %ul
+        - @gp40.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :machine
+    = f.text_field :machine
+  .field
+    = f.label :date
+    = f.datetime_select :date
+  .field
+    = f.label :beginning
+    = f.datetime_select :beginning
+  .actions
+    = f.submit 'Save'

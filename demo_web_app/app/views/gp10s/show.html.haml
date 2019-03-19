@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Di:
+  = @gp10.di
+%p
+  %b Machine:
+  = @gp10.machine
+%p
+  %b Date:
+  = @gp10.date
+%p
+  %b Beginning:
+  = @gp10.beginning
+
+= link_to 'Edit', edit_gp10_path(@gp10)
+\|
+= link_to 'Back', gp10s_path

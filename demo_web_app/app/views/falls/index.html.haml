@@ -1,0 +1,24 @@
+%h1 Listing falls
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Count
+      %th Machine
+      %th Date
+      %th
+      %th
+      %th
+
+  %tbody
+    - @falls.each do |fall|
+      %tr
+        %td= fall.count
+        %td= fall.machine
+        %td= fall.date
+        %td= link_to 'Show', fall
+        %td= link_to 'Edit', edit_fall_path(fall)
+        %td= link_to 'Destroy', fall, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+

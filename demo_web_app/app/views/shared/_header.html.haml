@@ -1,0 +1,14 @@
+%div{id: "header"}
+  %div{class: "right"}
+    - if session[:autoupdate]
+      自動更新 (
+      %span{class: "on"} 有効
+      ｜
+      = link_to('無効', root_path(autoupdate: "off", redirect: request.url), method: :post)
+      )
+    - else
+      自動更新 ( 
+      = link_to('有効', root_path(autoupdate: "on", redirect: request.url), method: :post)
+      ｜ 
+      %span{class: "on"} 無効
+      )

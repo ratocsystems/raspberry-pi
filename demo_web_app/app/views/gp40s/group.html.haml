@@ -1,0 +1,56 @@
+- breadcrumb :machine_gp40s, @gp40s
+%h1 RPi-GP40
+
+- if @gp40s.nil?
+  %h2 測定データなし
+
+- else
+  %h3
+    - gp40 = @gp40s.first
+
+    - if gp40.prev_group.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_gp40s_path(machine_id: gp40.machine_id, gp40_id: gp40.prev_group))
+
+    - if gp40.next_group.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_gp40s_path(machine_id: gp40.machine_id, gp40_id: gp40.next_group))
+    = link_to("最新", machine_gp40s_path(machine_id: gp40.machine_id))
+
+  %br
+
+  %h3
+    測定開始日時
+    = @gp40s.first.date.strftime("%F %T")
+
+  = line_chart @graph
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Date
+        - 8.times do |n|
+          %th
+            = "CH#{n}"
+
+    %tbody
+      - @gp40s.each do |gp40|
+        %tr
+          %td{rowspan: 2}= gp40.date.strftime("%F %T")
+
+          - gp40.channel.each do |ad|
+            %td
+              - if false == ad.nil?
+                = sprintf("0x%03X", ad[:value])
+                %br
+                = sprintf("(%s)", print_range(ad[:range]))
+
+        %tr
+          - gp40.channel.each do |ad|
+            %td
+              - if false == ad.nil?
+                = ad[:volte].truncate(3)
+                = "V"
+

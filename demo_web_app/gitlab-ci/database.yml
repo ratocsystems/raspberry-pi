@@ -1,0 +1,9 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: gitlab-ci
+  password: gitlab-ci
+  database: gitlab-ci_test
+  host: postgres
+

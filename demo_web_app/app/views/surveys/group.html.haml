@@ -1,0 +1,41 @@
+- breadcrumb :machine_surveys, @surveys
+%h1 距離測定データ
+
+- if @surveys.nil?
+  %h2 測定データなし
+
+- else
+  %h3
+    - survey = @surveys.first
+
+    - if survey.prev_group.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_surveys_path(machine_id: survey.machine_id, survey_id: survey.prev_group))
+
+    - if survey.next_group.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_surveys_path(machine_id: survey.machine_id, survey_id: survey.next_group))
+    = link_to("最新", machine_surveys_path(machine_id: survey.machine_id))
+
+  %br
+
+  %h3
+    測定開始日時
+    = @surveys.first.date.strftime("%F %T")
+
+  = line_chart @graph
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Date
+        %th Distance
+
+    %tbody
+      - @surveys.each do |survey|
+        %tr
+          %td= survey.date.strftime("%F %T")
+          %td= survey.distance
+

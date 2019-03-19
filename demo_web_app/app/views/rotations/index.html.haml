@@ -1,0 +1,26 @@
+%h1 Listing rotations
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Rpm
+      %th Angle
+      %th Machine
+      %th Date
+      %th
+      %th
+      %th
+
+  %tbody
+    - @rotations.each do |rotation|
+      %tr
+        %td= rotation.rpm
+        %td= rotation.angle
+        %td= rotation.machine
+        %td= rotation.date
+        %td= link_to 'Show', rotation
+        %td= link_to 'Edit', edit_rotation_path(rotation)
+        %td= link_to 'Destroy', rotation, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+

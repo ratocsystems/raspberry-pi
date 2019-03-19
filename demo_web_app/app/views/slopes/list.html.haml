@@ -1,0 +1,44 @@
+- breadcrumb :machine_slope
+%h1 傾きデータ
+
+%h3
+  - if @slopes.first.nil?
+    - if @last.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_slope_path(date: @last.date.strftime("%F")))
+    次のデータ
+  - else
+    - slope = @slopes.first
+    - if slope.prev_day.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_slope_path(machine_id: slope.machine_id, date: slope.prev_day.strftime("%F")))
+
+    - if slope.next_day.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_slope_path(machine_id: slope.machine_id, date: slope.next_day.strftime("%F")))
+
+  = link_to("今日", machine_slope_path(date: Time.current.strftime("%F")))
+
+= line_chart @graph
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Date
+      %th Beginning
+      %th x
+      %th y
+      %th z
+
+  %tbody
+    - @slopes.each do |slope|
+      %tr
+        %td= link_to(slope.date.strftime("%F %T"), machine_slopes_path(machine_id: slope.machine_id, slope_id: slope.id))
+        %td= slope.beginning.strftime("%F %T")
+        %td= slope.x
+        %td= slope.y
+        %td= slope.z
+

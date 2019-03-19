@@ -1,0 +1,39 @@
+%dev#top-page
+  %h1 Raspberry Piデータアップロードテストサーバー
+
+  - @machines.each do |machine|
+    %h2
+      Raspberry Pi [
+      = machine.mac
+      ]
+
+    %table.table.table-hover
+      %tr
+        %th デバイス
+        %th 最終測定日時
+      %tr
+        %td= link_to("回転数", machine_rotations_path(machine))
+        %td
+          - if machine.rotations.last.nil?
+            測定データなし
+          - else
+            = machine.rotations.last.beginning.strftime("%F %T")
+      %tr
+        %td= link_to("WBGT指標", machine_wbgts_path(machine))
+        - if machine.wbgts.last.nil?
+          %td 測定データなし
+        - else
+          %td= machine.wbgts.last.beginning.strftime("%F %T")
+      %tr
+        %td= link_to("RPi-GP10", machine_gp10s_path(machine))
+        - if machine.gp10s.last.nil?
+          %td 測定データなし
+        - else
+          %td= machine.gp10s.last.beginning.strftime("%F %T")
+      %tr
+        %td= link_to("RPi-GP40", machine_gp40s_path(machine))
+        - if machine.gp40s.last.nil?
+          %td 測定データなし
+        - else
+          %td= machine.gp40s.last.beginning.strftime("%F %T")
+    %br

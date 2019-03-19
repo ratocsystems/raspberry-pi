@@ -1,0 +1,26 @@
+%h1 Listing gp10s
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Di
+      %th Machine
+      %th Date
+      %th Beginning
+      %th
+      %th
+      %th
+
+  %tbody
+    - @gp10s.each do |gp10|
+      %tr
+        %td= gp10.di
+        %td= gp10.machine
+        %td= gp10.date
+        %td= gp10.beginning
+        %td= link_to 'Show', gp10
+        %td= link_to 'Edit', edit_gp10_path(gp10)
+        %td= link_to 'Destroy', gp10, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+

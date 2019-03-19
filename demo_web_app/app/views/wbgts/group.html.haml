@@ -1,0 +1,53 @@
+- breadcrumb :machine_wbgts, @wbgts
+%h1 WBGT 熱中症指標データ
+
+- if @wbgts.nil?
+  %h2 測定データなし
+
+- else
+  %h3
+    - wbgt = @wbgts.first
+
+    - if wbgt.prev_group.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_wbgts_path(machine_id: wbgt.machine_id, wbgt_id: wbgt.prev_group))
+
+    - if wbgt.next_group.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_wbgts_path(machine_id: wbgt.machine_id, wbgt_id: wbgt.next_group))
+    = link_to("最新", machine_wbgts_path(machine_id: wbgt.machine_id))
+
+  %br
+
+  %h3
+    測定開始日時
+    = @wbgts.first.date.strftime("%F %T")
+
+  = line_chart @graph
+
+  %dev{id: 'wbgt'}
+    %table.table.table-hover
+      %thead
+        %tr
+          %th 測定日時
+          %th 黒球計
+          %th 乾球計
+          %th 湿球計
+          %th 湿度
+          %th WBGT
+          %th 運動指針
+
+      %tbody
+        - @wbgts.each do |wbgt|
+          - wbgt_guide = get_wbgt_guide(wbgt.wbgt_data)
+          %tr{class: wbgt_guide[:value]}
+            %td= wbgt.date.strftime("%F %T")
+            %td= wbgt.black
+            %td= wbgt.dry
+            %td= wbgt.wet
+            %td= wbgt.humidity
+            %td= wbgt.wbgt_data
+            %td{class: 'guide'}= wbgt_guide[:msg]
+

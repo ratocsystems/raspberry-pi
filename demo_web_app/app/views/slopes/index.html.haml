@@ -1,0 +1,28 @@
+%h1 Listing slopes
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th X
+      %th Y
+      %th Z
+      %th Machine
+      %th Date
+      %th
+      %th
+      %th
+
+  %tbody
+    - @slopes.each do |slope|
+      %tr
+        %td= slope.x
+        %td= slope.y
+        %td= slope.z
+        %td= slope.machine
+        %td= slope.date
+        %td= link_to 'Show', slope
+        %td= link_to 'Edit', edit_slope_path(slope)
+        %td= link_to 'Destroy', slope, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+

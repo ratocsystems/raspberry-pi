@@ -1,0 +1,2 @@
+module SlopesHelper
+end

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Machine:
+  = @gp40.machine
+%p
+  %b Date:
+  = @gp40.date
+%p
+  %b Beginning:
+  = @gp40.beginning
+
+= link_to 'Edit', edit_gp40_path(@gp40)
+\|
+= link_to 'Back', gp40s_path

@@ -1,0 +1,45 @@
+- breadcrumb :machine_slopes, @slopes
+%h1 傾きデータ
+
+- if @slopes.nil?
+  %h2 測定データなし
+
+- else
+  %h3
+    - slope = @slopes.first
+
+    - if slope.prev_group.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_slopes_path(machine_id: slope.machine_id, slope_id: slope.prev_group))
+
+    - if slope.next_group.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_slopes_path(machine_id: slope.machine_id, slope_id: slope.next_group))
+    = link_to("最新", machine_slopes_path(machine_id: slope.machine_id))
+
+  %br
+
+  %h3
+    測定開始日時
+    = @slopes.first.date.strftime("%F %T")
+
+  = line_chart @graph
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Date
+        %th x
+        %th y
+        %th z
+
+    %tbody
+      - @slopes.each do |slope|
+        %tr
+          %td= slope.date.strftime("%F %T")
+          %td= slope.x
+          %td= slope.y
+          %td= slope.z
+

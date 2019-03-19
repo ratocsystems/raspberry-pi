@@ -1,0 +1,24 @@
+%h1 Listing surveys
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Distance
+      %th Machine
+      %th Date
+      %th
+      %th
+      %th
+
+  %tbody
+    - @surveys.each do |survey|
+      %tr
+        %td= survey.distance
+        %td= survey.machine
+        %td= survey.date
+        %td= link_to 'Show', survey
+        %td= link_to 'Edit', edit_survey_path(survey)
+        %td= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+

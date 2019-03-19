@@ -1,0 +1,57 @@
+- breadcrumb :machine_rotations, @rotations
+%h1 回転数一覧
+
+- if @rotations.nil?
+  %h2 測定データなし
+
+- else
+  %h3
+    - rotation = @rotations.first
+
+    - if rotation.prev_group.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_rotations_path(machine_id: rotation.machine_id, rotation_id: rotation.prev_group))
+
+    - if rotation.next_group.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_rotations_path(machine_id: rotation.machine_id, rotation_id: rotation.next_group))
+    = link_to("最新", machine_rotations_path(machine_id: rotation.machine_id))
+
+  %br
+
+  %h3
+    測定開始日時
+    = @rotations.first.date.strftime("%F %T")
+
+  %h3
+    最大回転数
+    = @rotations.maximum(:rpm)
+
+  %h3
+    停止角度
+    = @rotations.last.angle
+    %span{class: 'roulette'}
+      %span{class: get_roulette_position(@rotations.last.angle)}= get_roulette_no(@rotations.last.angle)
+
+  %br
+
+  = line_chart @graph, min: 0, max: @rotations.maximum(:rpm)
+
+  %br
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th 測定日時
+        %th 回転数
+        %th 停止角度
+
+    %tbody
+      - @rotations.each do |rotation|
+        %tr
+          %td= rotation.date.strftime("%T")
+          %td= rotation.rpm
+          %td= rotation.angle
+

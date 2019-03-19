@@ -1,0 +1,46 @@
+- breadcrumb :machine_gp10s, @gp10s
+%h1 RPi-GP10
+
+- if @gp10s.nil?
+  %h2 測定データなし
+
+- else
+  %h3
+    - gp10 = @gp10s.first
+
+    - if gp10.prev_group.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_gp10s_path(machine_id: gp10.machine_id, gp10_id: gp10.prev_group))
+
+    - if gp10.next_group.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_gp10s_path(machine_id: gp10.machine_id, gp10_id: gp10.next_group))
+    = link_to("最新", machine_gp10s_path(machine_id: gp10.machine_id))
+
+  %br
+
+  %h3
+    測定開始日時
+    = @gp10s.first.date.strftime("%F %T")
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Date
+        %th Digital Input
+        %th CH7 .. CH0
+
+    %tbody
+      - @gp10s.each do |gp10|
+        %tr
+          %td= gp10.date.strftime("%F %T")
+          %td= sprintf("0x%02X", gp10.di)
+          %td
+            - 8.times do |n|
+              - if 1 == gp10.di[7 - n]
+                %div.circle.on
+              - else
+                %div.circle.off
+

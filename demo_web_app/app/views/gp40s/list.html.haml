@@ -1,0 +1,53 @@
+- breadcrumb :machine_gp40
+%h1 RPi-GP40
+
+%h3
+  - if @gp40s.first.nil?
+    - if @last.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_gp40_path(date: @last.date.strftime("%F")))
+    次のデータ
+  - else
+    - gp40 = @gp40s.first
+    - if gp40.prev_day.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_gp40_path(machine_id: gp40.machine_id, date: gp40.prev_day.strftime("%F")))
+
+    - if gp40.next_day.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_gp40_path(machine_id: gp40.machine_id, date: gp40.next_day.strftime("%F")))
+
+  = link_to("今日", machine_gp40_path(date: Time.current.strftime("%F")))
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Date
+      %th Beginning
+      - 8.times do |n|
+        %th
+          = "CH#{n}"
+
+  %tbody
+    - @gp40s.each do |gp40|
+      %tr
+        %td{rowspan: 2}= link_to(gp40.date.strftime("%F %T"), machine_gp40s_path(machine_id: gp40.machine_id, gp40_id: gp40.id))
+        %td{rowspan: 2}= gp40.beginning.strftime("%F %T")
+
+        - gp40.channel.each do |ad|
+          %td
+            - if false == ad.nil?
+              = sprintf("0x%03X", ad[:value])
+              %br
+              = sprintf("(%s)", print_range(ad[:range]))
+
+      %tr
+        - gp40.channel.each do |ad|
+          %td
+            - if false == ad.nil?
+              = ad[:volte].truncate(3)
+              = "V"
+

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Count:
+  = @fall.count
+%p
+  %b Machine:
+  = @fall.machine
+%p
+  %b Date:
+  = @fall.date
+
+= link_to 'Edit', edit_fall_path(@fall)
+\|
+= link_to 'Back', falls_path

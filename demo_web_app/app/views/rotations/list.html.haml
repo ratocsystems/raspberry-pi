@@ -1,0 +1,42 @@
+- breadcrumb :machine_rotation
+%h1 回転数日別一覧
+
+%h3
+  - if @rotations.first.nil?
+    - if @last.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_rotation_path(date: @last.date.strftime("%F")))
+    次のデータ
+  - else
+    - rotation = @rotations.first
+    - if rotation.prev_day.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_rotation_path(machine_id: rotation.machine_id, date: rotation.prev_day.strftime("%F")))
+
+    - if rotation.next_day.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_rotation_path(machine_id: rotation.machine_id, date: rotation.next_day.strftime("%F")))
+
+  = link_to("今日", machine_rotation_path(date: Time.current.strftime("%F")))
+
+= line_chart @graph, min: 0, max: @rotations.maximum(:rpm)
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th 測定日時
+      %th 測定開始日時
+      %th 回転数
+      %th 停止角度
+
+  %tbody
+    - @rotations.each do |rotation|
+      %tr
+        %td= link_to(rotation.date.strftime("%F %T"), machine_rotations_path(machine_id: rotation.machine_id, rotation_id: rotation.id))
+        %td= rotation.beginning.strftime("%F %T")
+        %td= rotation.rpm
+        %td= rotation.angle
+

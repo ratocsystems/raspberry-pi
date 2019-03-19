@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b X:
+  = @slope.x
+%p
+  %b Y:
+  = @slope.y
+%p
+  %b Z:
+  = @slope.z
+%p
+  %b Machine:
+  = @slope.machine
+%p
+  %b Date:
+  = @slope.date
+
+= link_to 'Edit', edit_slope_path(@slope)
+\|
+= link_to 'Back', slopes_path

@@ -1,0 +1,22 @@
+= form_for @rotation do |f|
+  - if @rotation.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@rotation.errors.count, "error")} prohibited this rotation from being saved:"
+      %ul
+        - @rotation.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :rpm
+    = f.text_field :rpm
+  .field
+    = f.label :angle
+    = f.text_field :angle
+  .field
+    = f.label :machine
+    = f.text_field :machine
+  .field
+    = f.label :date
+    = f.datetime_select :date
+  .actions
+    = f.submit 'Save'

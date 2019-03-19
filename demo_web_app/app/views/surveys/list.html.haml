@@ -1,0 +1,40 @@
+- breadcrumb :machine_survey
+%h1 距離測定データ
+
+%h3
+  - if @surveys.first.nil?
+    - if @last.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_survey_path(date: @last.date.strftime("%F")))
+    次のデータ
+  - else
+    - survey = @surveys.first
+    - if survey.prev_day.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_survey_path(machine_id: survey.machine_id, date: survey.prev_day.strftime("%F")))
+
+    - if survey.next_day.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_survey_path(machine_id: survey.machine_id, date: survey.next_day.strftime("%F")))
+
+  = link_to("今日", machine_survey_path(date: Time.current.strftime("%F")))
+
+= line_chart @graph
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Date
+      %th Beginning
+      %th Distance
+
+  %tbody
+    - @surveys.each do |survey|
+      %tr
+        %td= link_to(survey.date.strftime("%F %T"), machine_surveys_path(machine_id: survey.machine_id, survey_id: survey.id))
+        %td= survey.beginning.strftime("%F %T")
+        %td= survey.distance
+

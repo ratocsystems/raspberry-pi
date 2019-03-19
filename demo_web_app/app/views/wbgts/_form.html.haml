@@ -1,0 +1,34 @@
+= form_for @wbgt do |f|
+  - if @wbgt.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@wbgt.errors.count, "error")} prohibited this wbgt from being saved:"
+      %ul
+        - @wbgt.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :black
+    = f.text_field :black
+  .field
+    = f.label :dry
+    = f.text_field :dry
+  .field
+    = f.label :wet
+    = f.text_field :wet
+  .field
+    = f.label :humidity
+    = f.text_field :humidity
+  .field
+    = f.label :wbgt_data
+    = f.text_field :wbgt_data
+  .field
+    = f.label :machine
+    = f.text_field :machine
+  .field
+    = f.label :date
+    = f.datetime_select :date
+  .field
+    = f.label :beginning
+    = f.datetime_select :beginning
+  .actions
+    = f.submit 'Save'

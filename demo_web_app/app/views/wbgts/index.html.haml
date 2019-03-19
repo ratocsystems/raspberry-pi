@@ -1,0 +1,32 @@
+%h1 Listing wbgts
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Black
+      %th Dry
+      %th Wet
+      %th Humidity
+      %th Wbgt data
+      %th Machine
+      %th Date
+      %th
+      %th
+      %th
+
+  %tbody
+    - @wbgts.each do |wbgt|
+      %tr
+        %td= wbgt.black
+        %td= wbgt.dry
+        %td= wbgt.wet
+        %td= wbgt.humidity
+        %td= wbgt.wbgt_data
+        %td= wbgt.machine
+        %td= wbgt.date
+        %td= link_to 'Show', wbgt
+        %td= link_to 'Edit', edit_wbgt_path(wbgt)
+        %td= link_to 'Destroy', wbgt, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+

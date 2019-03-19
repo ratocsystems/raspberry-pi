@@ -1,0 +1,48 @@
+image: ruby:2.5.1
+
+variables:
+  BUNDLE_CACHE: "vendor/bundle/"
+  RAILS_ENV: "test"
+  POSTGRES_USER: "gitlab-ci"
+  POSTGRES_PASSWORD: "gitlab-ci"
+  TZ: "Asia/Tokyo"
+
+cache:
+  untracked: true
+  key: "$CI_BUILD_NAME"
+  paths:
+    # variables.BUNDLE_CACHEと同じものを指定する
+    - vendor/bundle/
+
+services:
+  - postgres:10
+
+stages:
+  - test
+  - deploy
+
+rspec:
+  stage: test
+  script:
+    - ./gitlab-ci/setup.sh
+    - ./gitlab-ci/rspec.sh
+  artifacts:
+    paths:
+      - coverage
+    expire_in: 1 days
+
+pages:
+  stage: deploy
+  dependencies:
+    - rspec
+  script:
+    - mv coverage/ public/
+  variables:
+    GIT_STRATEGY: none
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 days
+  only:
+    - master
+

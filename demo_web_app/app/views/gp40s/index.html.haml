@@ -1,0 +1,24 @@
+%h1 Listing gp40s
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Machine
+      %th Date
+      %th Beginning
+      %th
+      %th
+      %th
+
+  %tbody
+    - @gp40s.each do |gp40|
+      %tr
+        %td= gp40.machine
+        %td= gp40.date
+        %td= gp40.beginning
+        %td= link_to 'Show', gp40
+        %td= link_to 'Edit', edit_gp40_path(gp40)
+        %td= link_to 'Destroy', gp40, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+

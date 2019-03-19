@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Black:
+  = @wbgt.black
+%p
+  %b Dry:
+  = @wbgt.dry
+%p
+  %b Wet:
+  = @wbgt.wet
+%p
+  %b Humidity:
+  = @wbgt.humidity
+%p
+  %b Wbgt data:
+  = @wbgt.wbgt_data
+%p
+  %b Date:
+  = @wbgt.date
+
+= link_to 'Edit', edit_wbgt_path(@wbgt)
+\|
+= link_to 'Back', wbgts_path

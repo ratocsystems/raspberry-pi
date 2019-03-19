@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Rpm:
+  = @rotation.rpm
+%p
+  %b Angle:
+  = @rotation.angle
+%p
+  %b Machine:
+  = @rotation.machine
+%p
+  %b Date:
+  = @rotation.date
+
+= link_to 'Edit', edit_rotation_path(@rotation)
+\|
+= link_to 'Back', rotations_path

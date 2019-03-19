@@ -1,0 +1,45 @@
+- breadcrumb :machine_gp10
+%h1 RPi-GP10
+
+%h3
+  - if @gp10s.first.nil?
+    - if @last.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_gp10_path(date: @last.date.strftime("%F")))
+    次のデータ
+  - else
+    - gp10 = @gp10s.first
+    - if gp10.prev_day.nil?
+      前のデータ
+    - else
+      = link_to("前のデータ", machine_gp10_path(machine_id: gp10.machine_id, date: gp10.prev_day.strftime("%F")))
+
+    - if gp10.next_day.nil?
+      次のデータ
+    - else
+      = link_to("次のデータ", machine_gp10_path(machine_id: gp10.machine_id, date: gp10.next_day.strftime("%F")))
+
+  = link_to("今日", machine_gp10_path(date: Time.current.strftime("%F")))
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Date
+      %th Beginning
+      %th Digital Input
+      %th CH7 .. CH0
+
+  %tbody
+    - @gp10s.each do |gp10|
+      %tr
+        %td= link_to(gp10.date.strftime("%F %T"), machine_gp10s_path(machine_id: gp10.machine_id, gp10_id: gp10.id))
+        %td= gp10.beginning.strftime("%F %T")
+        %td= sprintf("0x%02X", gp10.di)
+        %td
+          - 8.times do |n|
+            - if 1 == gp10.di[7 - n]
+              %div.circle.on
+            - else
+              %div.circle.off
+
