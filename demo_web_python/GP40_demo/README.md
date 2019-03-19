@@ -4,7 +4,7 @@
 Raspberry Piは'Raspberry Pi3 ModelB'、OSは'Raspbian Stretch with desktop(NOOBS:2018-11-13)'で説明します。
 プログラムファイルは`GP40_demo.py`です。  
 
-[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/demo_web_app)が動作するサーバーへRPi-GP40から取得したデータをPOSTします。  
+[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/tree/master/demo_web_app)が動作するサーバーへRPi-GP40から取得したデータをPOSTします。  
 
   
 ***
@@ -55,7 +55,7 @@ HTTPのPOST通信によりJSON形式にてアナログ入力データを送信�
 
 1. **サーバーURL**  
     デモ運用のAmazon AWS EC2サーバーやローカルサーバーアドレスを記述します。  
-    サーバー上では[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/demo_web_app)の動作が必要です。 
+    サーバー上では[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/tree/master/demo_web_app)の動作が必要です。 
     EC2サーバーの場合起動のたびにアドレスが変更されるため、記述を確認してくださいです。  
 
 1. **RPi-GP40の初期設定 init_GP40()**  
@@ -142,7 +142,7 @@ RPi-GP40 WEBアプリデモプログラム
     ±10V ch5:  2.2250[9BD]
     ±10V ch6:  2.2250[9BD]
     ±10V ch7:  2.2250[9BD]
-<Response [201]>
+    <Response [201]>
     5/5
 
 $
@@ -184,7 +184,7 @@ ch:レンジ= 0:±10V, 1:±10V, 2:±10V, 3:±10V, 4:±10V, 5:±10V, 6:±10V, 7:�
     ±10V ch5:  2.2250[9BD]
     ±10V ch6:  2.2250[9BD]
     ±10V ch7:  2.2250[9BD]
-<Response [201]>
+    <Response [201]>
     ~~~  
 
 - **連続AD変換を行なう**  
@@ -202,8 +202,8 @@ ch:レンジ= 0:±10V, 1:±10V, 2:±10V, 3:±10V, 4:±10V, 5:±10V, 6:±10V, 7:�
     ±10V ch5:  1.0500[8D2]
     ±10V ch6:  0.7000[88C]
     ±10V ch7:  0.3500[846]
-<Response [201]>
-   10/10
+    <Response [201]>
+    10/10
     ~~~  
 
 - **HTTPレスポンスステータスコードについて**  

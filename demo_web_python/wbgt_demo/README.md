@@ -9,7 +9,7 @@
 GitHubからPythonファイルをダウンロードします。
 1. wbgt_demo.pyをダウンロード
     ```
-    $ wget https://github.com/ratocsystems/raspberry-pi/raw/master/demo_web_app/python/wbgt_demo.py  
+    $ wget https://github.com/ratocsystems/raspberry-pi/raw/master/demo_web_python/wbgt_demo/wbgt_demo.py  
     ```  
 
 1. `ls`コマンドを実行してダウンロードされていることを確認します。

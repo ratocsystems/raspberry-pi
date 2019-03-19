@@ -4,7 +4,7 @@
 Raspberry Piは'Raspberry Pi3 ModelB'、OSは'Raspbian Stretch with desktop(NOOBS:2018-11-13)'で説明します。
 プログラムファイルは`GP10_demo.py`です。  
 
-[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/demo_web_app)が動作するサーバーへRPi-GP10から取得したデータをPOSTします。  
+[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/tree/master/demo_web_app)が動作するサーバーへRPi-GP10から取得したデータをPOSTします。  
   
 ***
 ## 準備
@@ -54,7 +54,7 @@ HTTPのPOST通信によりJSON形式にてデジタル入力データを送信�
 
 1. **サーバーURL**  
     デモ運用のAmazon AWS EC2サーバーやローカルサーバーアドレスを記述します。  
-    サーバー上では[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/demo_web_app)の動作が必要です。 
+    サーバー上では[クラウドWEBアプリケーション](https://github.com/ratocsystems/raspberry-pi/tree/master/demo_web_app)の動作が必要です。 
     EC2サーバーの場合起動のたびにアドレスが変更されるため、記述を確認してくださいです。  
 
 1. **RPi-GP10の初期設定 init_GP10()**  
