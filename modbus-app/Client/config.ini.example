@@ -1,0 +1,12 @@
+[COMMON]
+protocol = rtu
+debug    = False
+
+[TCP]
+host = 127.0.0.1
+port = 5020
+
+[SERIAL]
+device   = /dev/ttyUSB1
+baudrate = 9600
+
