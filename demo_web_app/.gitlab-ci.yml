@@ -28,7 +28,7 @@ rspec:
     - ./gitlab-ci/rspec.sh
   artifacts:
     paths:
-      - coverage
+      - coverage/
     expire_in: 1 days
 
 pages:
@@ -36,6 +36,7 @@ pages:
   dependencies:
     - rspec
   script:
+    - rm -rf public
     - mv coverage/ public/
   variables:
     GIT_STRATEGY: none
