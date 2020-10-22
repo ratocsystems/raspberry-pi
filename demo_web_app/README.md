@@ -59,7 +59,7 @@ sudo -u postgres psql -c "ALTER ROLE demo_web_app with password 'demo_web_app_pa
 ### コード取得
 
 ```sh
-$ git clone https://github.com/ratocsystems/raspberry-pi/demo_web_app
+$ git clone https://github.com/ratocsystems/raspberry-pi
 ```
 ### nginx設定ファイル
 
